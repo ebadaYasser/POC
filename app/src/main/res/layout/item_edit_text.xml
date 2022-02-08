@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:padding="8dp"
+  android:layout_height="wrap_content">
+
+
+  <TextView
+    android:id="@+id/label_tv"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="24dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginEnd="8dp"
+    android:paddingBottom="2dp"
+    android:textAlignment="viewStart"
+    app:layout_constraintEnd_toStartOf="@+id/add_et_comment_iv"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    tools:text="notes" />
+
+  <ImageView
+    android:id="@+id/required_iv"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="16dp"
+    android:visibility="gone"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
+
+  <EditText
+    android:id="@+id/text_box_et"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="24dp"
+    android:layout_marginEnd="24dp"
+    android:layout_marginBottom="8dp"
+    android:textAlignment="viewStart"
+    android:maxLength="5000"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/label_tv"
+    tools:hint="hint will be here" />
+
+  <ImageView
+    android:id="@+id/add_et_comment_iv"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="16dp"
+    android:padding="4dp"
+    android:visibility="gone"
+    app:layout_constraintBottom_toBottomOf="@+id/label_tv"
+    app:layout_constraintEnd_toStartOf="@+id/ic_et_attachment_iv"
+    app:layout_constraintTop_toTopOf="@+id/label_tv"
+    tools:visibility="visible" />
+
+  <ImageView
+    android:id="@+id/ic_et_attachment_iv"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="8dp"
+    android:padding="4dp"
+    android:visibility="gone"
+    app:layout_constraintBottom_toBottomOf="@+id/add_et_comment_iv"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toTopOf="@+id/add_et_comment_iv"
+    tools:visibility="visible" />
+
+  <View
+    android:id="@+id/disabledEditTextFieldView"
+    android:layout_width="0dp"
+    android:layout_height="0dp"
+    android:background="#7ff6f6f6"
+    android:clickable="true"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:visibility="gone"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
+
+  <androidx.constraintlayout.widget.Guideline
+    android:id="@+id/guideline"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    app:layout_constraintGuide_begin="274dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>
