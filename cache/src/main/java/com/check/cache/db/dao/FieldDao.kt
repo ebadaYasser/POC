@@ -1,17 +1,15 @@
 package com.check.cache.db.dao
 
-import android.provider.SyncStateContract.Helpers.insert
-import androidx.lifecycle.LiveData
-import androidx.room.*
-import com.check.cache.db.FieldDataBase
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import com.check.cache.db.entities.FieldCacheEntity
 
 @Dao
 interface FieldDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertFields(fields:FieldCacheEntity)
-
+     fun insertFields(fields: FieldCacheEntity)
 
 
 //    @Update

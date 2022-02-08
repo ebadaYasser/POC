@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity(), OnParentChanges {
     override  fun onParentChanges(parentField: Field) {
         val asd = formAdapter.getCurrentList()
         if (::formAdapter.isInitialized) {
-            formViewModel.saveForm(formAdapter.getCurrentList())
+            formViewModel.saveForm(parentField)
             formViewModel.afterNotifiedParentChanged(
                 parentField,
                 formAdapter.getCurrentList(),

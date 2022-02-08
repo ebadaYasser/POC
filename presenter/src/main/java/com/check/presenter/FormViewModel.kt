@@ -1,14 +1,13 @@
 package com.check.presenter
 
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
 import com.check.helper.CalculateDependencyHelper
 import com.check.domain.models.Field
 import com.check.domain.usecase.FormUseCase
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 
-class FormViewModel(private val formUseCase: FormUseCase) : ViewModel() {
+class FormViewModel(private val formUseCase: FormUseCase) : BaseViewModel() {
     private val fieldData = MutableLiveData<List<Field>>()
     private val foundedItemInAdapterList = MutableLiveData<Int>()
 
@@ -16,8 +15,18 @@ class FormViewModel(private val formUseCase: FormUseCase) : ViewModel() {
         fieldData.postValue(checkFieldsForFirstTime(formUseCase.getForm()))
     }
 
-     fun saveForm(fields: List<Field>) {
-        formUseCase.saveDateInCache(fields)
+    fun saveForm(field: Field) {
+        compositeDisposable.add(
+            formUseCase.saveDateInCache(field)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    val asws = ""
+                }, {
+                    val asw = it
+                })
+
+        )
     }
 
     fun observe(
