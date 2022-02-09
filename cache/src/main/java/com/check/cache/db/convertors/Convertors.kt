@@ -6,6 +6,7 @@ import com.check.data.models.ConditionalViewEntity
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
+
 class Convertors {
     private val gson = Gson()
 

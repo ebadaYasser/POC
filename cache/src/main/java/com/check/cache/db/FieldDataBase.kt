@@ -9,20 +9,20 @@ import com.check.cache.db.convertors.Convertors
 import com.check.cache.db.dao.FieldDao
 import com.check.cache.db.entities.FieldCacheEntity
 
-@Database(entities = [FieldCacheEntity::class],version = 1)
+@Database(entities = [FieldCacheEntity::class], version = 1)
 @TypeConverters(Convertors::class)
-abstract class FieldDataBase :RoomDatabase() {
+abstract class FieldDataBase : RoomDatabase() {
 
     abstract fun getRunDao(): FieldDao
 
 
-    companion object{
+    companion object {
         @Volatile
-        private var INSTANCE : FieldDataBase? = null
-        fun getInstance(context: Context):FieldDataBase{
-            synchronized(this){
+        private var INSTANCE: FieldDataBase? = null
+        fun getInstance(context: Context): FieldDataBase {
+            synchronized(this) {
                 var instance = INSTANCE
-                if(instance==null){
+                if (instance == null) {
                     instance = Room.databaseBuilder(
                         context.applicationContext,
                         FieldDataBase::class.java,
