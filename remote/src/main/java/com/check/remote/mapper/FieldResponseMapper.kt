@@ -17,7 +17,7 @@ class FieldResponseMapper(private val mapper: ConditionViewResponseMapper) :
             model?.fieldOrder,
             model?.hasAttachments,
             model?.hasNotes,
-            model?.id,
+            model?.id.toString(),
             model?.regex,
             model?.required,
             model?.responsibleUnit,

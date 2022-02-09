@@ -23,9 +23,9 @@ data class FormResponse(
     data class Field(
       @SerializedName("ArLabel")
       val arLabel: String,
-      var values: MutableList<Any>? = null,
+      var values: MutableList<String>? = null,
       @SerializedName("ArPlaceholder")
-    val arPlaceholder: Any,
+    val arPlaceholder: String,
 
     @SerializedName("ConditionalView")
     val conditionalView: ConditionalView? = null,
@@ -37,7 +37,7 @@ data class FormResponse(
     val enLabel: String,
 
     @SerializedName("EnPlaceholder")
-    val enPlaceholder: Any,
+    val enPlaceholder: String,
 
     @SerializedName("FieldOrder")
     val fieldOrder: Int,
@@ -58,19 +58,19 @@ data class FormResponse(
     val required: Boolean,
 
     @SerializedName("ResponsibleUnit")
-    val responsibleUnit: Any,
+    val responsibleUnit: String,
 
     @SerializedName("SectionId")
-    val sectionId: Any,
+    val sectionId: String,
 
     @SerializedName("SeverityLevel")
-    val severityLevel: Any,
+    val severityLevel: String,
 
     @SerializedName("TemplateQuestionId")
-    val templateQuestionId: Any,
+    val templateQuestionId: String,
 
     @SerializedName("VisibilityView")
-    val visibilityView: List<Any>,
+    val visibilityView: List<String>,
     var childFields: MutableList<String>? = null
     )
     {
@@ -85,11 +85,11 @@ data class FormResponse(
       ) {
         data class Condition(
           @SerializedName("ArErrorMsg")
-          val arErrorMsg: Any,
+          val arErrorMsg: String,
           @SerializedName("ConditionType")
           val conditionType: String,
           @SerializedName("EnErrorMsg")
-          val enErrorMsg: Any,
+          val enErrorMsg: String,
           @SerializedName("LinkedFieldId")
           val linkedFieldId: String,
           @SerializedName("ValidatorValue")

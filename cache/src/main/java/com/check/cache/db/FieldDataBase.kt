@@ -5,14 +5,13 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import com.check.cache.db.convertors.Convertors
 import com.check.cache.db.dao.FieldDao
 import com.check.cache.db.entities.FieldCacheEntity
 
 @Database(entities = [FieldCacheEntity::class],version = 1)
-@TypeConverters(Converters::class)
+@TypeConverters(Convertors::class)
 abstract class FieldDataBase :RoomDatabase() {
-
-//    abstract val fieldDAO : FieldDao
 
     abstract fun getRunDao(): FieldDao
 
