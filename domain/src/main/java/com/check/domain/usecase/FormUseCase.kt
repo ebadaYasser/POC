@@ -6,4 +6,5 @@ import com.check.domain.repository.FormRepository
 class FormUseCase(private val formRepository: FormRepository) {
     fun getForm() = formRepository.getForm()
     fun saveDateInCache(field: Field) = formRepository.saveDataToCache(field)
+    fun getFields(fieldId: String) = formRepository.getFields(fieldId)
 }

@@ -1,6 +1,7 @@
 package com.check.domain.models
 
 data class Field(
+    var formId: String?,
     var arLabel: String?,
     var values: MutableList<String>? = null,
     var arPlaceholder: String?,

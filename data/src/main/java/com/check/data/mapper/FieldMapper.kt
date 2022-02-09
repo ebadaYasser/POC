@@ -6,6 +6,7 @@ import com.check.domain.models.Field
 class FieldMapper(private val mapper: ConditionalViewMApper) : Mapper<FieldEntity, Field> {
     override fun mapFromEntity(type: FieldEntity?): Field {
         return Field(
+            type?.formId,
             type?.arLabel,
             type?.values,
             type?.arPlaceholder,
@@ -30,6 +31,7 @@ class FieldMapper(private val mapper: ConditionalViewMApper) : Mapper<FieldEntit
 
     override fun mapToEntity(type: Field?): FieldEntity {
         return FieldEntity(
+            type?.formId,
             type?.arLabel,
             type?.values,
             type?.arPlaceholder,

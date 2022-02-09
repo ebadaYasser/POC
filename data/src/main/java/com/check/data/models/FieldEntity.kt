@@ -1,6 +1,7 @@
 package com.check.data.models
 
-data class FieldEntity (
+data class FieldEntity(
+    var formId: String?,
     var arLabel: String?,
     var values: MutableList<String>? = null,
     var arPlaceholder: String?,
@@ -20,4 +21,4 @@ data class FieldEntity (
     var templateQuestionId: String?,
     var visibilityView: List<String?>?,
     var childFields: MutableList<String>? = null
-        )
+)

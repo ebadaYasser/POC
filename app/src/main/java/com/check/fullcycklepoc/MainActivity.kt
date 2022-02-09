@@ -19,11 +19,12 @@ class MainActivity : AppCompatActivity(), OnParentChanges {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val dao = FieldDataBase.getInstance(application).getRunDao()
+        FieldDataBase.getInstance(application).getRunDao()
 
         formAdapter = FormBuilderAdapter(this)
         initObservers()
         formViewModel.getForm()
+        formViewModel.getCachedFields("1")
     }
 
     private fun initObservers() {
@@ -45,7 +46,6 @@ class MainActivity : AppCompatActivity(), OnParentChanges {
     }
 
     override  fun onParentChanges(parentField: Field) {
-        val asd = formAdapter.getCurrentList()
         if (::formAdapter.isInitialized) {
             formViewModel.saveForm(parentField)
             formViewModel.afterNotifiedParentChanged(

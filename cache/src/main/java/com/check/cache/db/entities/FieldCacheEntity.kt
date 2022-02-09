@@ -7,6 +7,7 @@ import com.check.data.models.ConditionalViewEntity
 
 @Entity(tableName = "Field")
 data class FieldCacheEntity(
+    var formId: String?,
     var arLabel: String?,
     var values: MutableList<String>? = null,
     var arPlaceholder: String?,

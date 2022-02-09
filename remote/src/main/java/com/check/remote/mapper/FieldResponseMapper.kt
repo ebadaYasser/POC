@@ -7,6 +7,7 @@ class FieldResponseMapper(private val mapper: ConditionViewResponseMapper) :
     ResponseMapper<FormResponse.Data.Field, FieldEntity> {
     override fun mapFromModel(model: FormResponse.Data.Field?): FieldEntity {
         return FieldEntity(
+            "",
             model?.arLabel,
             model?.values,
             model?.arPlaceholder,

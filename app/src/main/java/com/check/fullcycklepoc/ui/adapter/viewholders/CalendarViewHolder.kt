@@ -3,6 +3,7 @@ package com.check.fullcycklepoc.ui.adapter.viewholders
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.check.core.base.DependencyActions
 import com.check.domain.models.Field
 import com.check.fullcycklepoc.R
@@ -21,6 +22,7 @@ class CalendarViewHolder(
 
     private val title = itemView.findViewById<TextView>(R.id.label_tv_date)
     private val textArea = itemView.findViewById<EditText>(R.id.text_box_et_date_date)
+    private val container = itemView.findViewById<ConstraintLayout>(R.id.date_container)
     override fun bind(item: Field, isLast: Boolean) {
         val isFieldHasDependencies = item.conditionalView?.conditions?.isEmpty() ?: false
         val action = item.conditionalView?.action
@@ -30,10 +32,9 @@ class CalendarViewHolder(
             showItem(!isFieldHasDependencies)
 
         title.text = item.enLabel
-        itemView.context.openCalendarAndSetTextInResult(item, textArea) {
-
-            GlobalScope.launch (Dispatchers.Main) {
-            onParentChanges.onParentChanges(it)
+        container.setOnClickListener {
+            itemView.context.openCalendarAndSetTextInResult(item, textArea) {
+                onParentChanges.onParentChanges(it)
             }
         }
 

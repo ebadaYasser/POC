@@ -16,16 +16,26 @@ class FormViewModel(private val formUseCase: FormUseCase) : BaseViewModel() {
     }
 
     fun saveForm(field: Field) {
+        field.formId = "1"
         compositeDisposable.add(
             formUseCase.saveDateInCache(field)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({
-                    val asws = ""
-                }, {
-                    val asw = it
-                })
+                .subscribe({}, {})
 
+        )
+    }
+
+    fun getCachedFields(formId: String) {
+        compositeDisposable.add(
+            formUseCase.getFields(formId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    val wsw = it
+                }, {
+                    val wsw = it
+                })
         )
     }
 
@@ -42,6 +52,7 @@ class FormViewModel(private val formUseCase: FormUseCase) : BaseViewModel() {
     ) {
         foundedItemInAdapterList.observe(lifecycleOwner, observer)
     }
+
 
     fun afterNotifiedParentChanged(parent: Field, items: List<Field>, isComputing: Boolean) {
         for (childFieldId in parent.childFields ?: mutableListOf()) {

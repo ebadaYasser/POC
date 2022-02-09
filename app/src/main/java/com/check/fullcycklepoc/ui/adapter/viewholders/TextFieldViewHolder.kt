@@ -57,7 +57,6 @@ class TextFieldViewHolder(
                     item.values?.add(s?.toString() as String)
                 }
                 onParentChanges.onParentChanges(item)
-//                GlobalScope.launch(Dispatchers.Main) { onParentChanges.onParentChanges(item) }
 
             }
         }

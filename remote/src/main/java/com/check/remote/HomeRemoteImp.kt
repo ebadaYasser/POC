@@ -9,12 +9,12 @@ import com.google.gson.Gson
 
 class HomeRemoteImp(private val mapper: FieldResponseMapper) : FormRemote {
     override fun getForm(): List<FieldEntity> {
-        val asw = getFieldsAfterAddNodeChildrenToParent()
-        val aswf = asw[6]
-        repeat(1000){
-            asw.add(aswf)
+        val result = getFieldsAfterAddNodeChildrenToParent()
+        val obj = result[6]
+        repeat(100000) {
+            result.add(obj)
         }
-        return asw.map { mapper.mapFromModel(it) }
+        return result.map { mapper.mapFromModel(it) }
     }
 
 

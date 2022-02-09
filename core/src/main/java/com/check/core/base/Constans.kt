@@ -357,7 +357,7 @@ object TestResponse {
       "                \"VisibilityView\": []\n" +
       "            },\n" +
       "            {\n" +
-      "                \"ControlType\": \"TEXT_BOX\",\n" +
+      "                \"ControlType\": \"CALENDER\",\n" +
       "                \"Regex\": \"\",\n" +
       "                \"EnPlaceholder\": null,\n" +
       "                \"ArPlaceholder\": null,\n" +
@@ -368,8 +368,8 @@ object TestResponse {
       "                \"SeverityLevel\": null,\n" +
       "                \"Id\": \"5515a4a2-e413-4c16-8289-69ebf9f52071\",\n" +
       "                \"TemplateQuestionId\": null,\n" +
-      "                \"EnLabel\": \"TextBox\",\n" +
-      "                \"ArLabel\": \"TextBox\",\n" +
+      "                \"EnLabel\": \"calendar\",\n" +
+      "                \"ArLabel\": \"calendar\",\n" +
       "                \"FieldOrder\": 5,\n" +
       "                \"SectionId\": null,\n" +
       "                \"ConditionalView\": {\n" +
