@@ -1,23 +1,24 @@
-package com.check.data.mapper
+package com.check.data.mapper.newmapper
 
-import com.check.data.models.FieldEntity
-import com.check.domain.models.Field
+import com.check.data.mapper.Mapper
+import com.check.data.models.newestrespone.NewFieldEntity
+import com.check.domain.models.newestresponse.NewField
 
-class FieldMapper(private val mapper: ConditionalViewMApper) : Mapper<FieldEntity, Field> {
-    override fun mapFromEntity(type: FieldEntity?): Field {
-        return Field(
-            type?.formId,
+class NewFieldMapper(
+    private val conditionalViewMApper: ConditionalViewMApper
+) : Mapper<NewFieldEntity, NewField> {
+    override fun mapFromEntity(type: NewFieldEntity?): NewField {
+        return NewField(
             type?.arLabel,
-            type?.values,
             type?.arPlaceholder,
-            type?.conditionalView?.let { mapper.mapFromEntity(it) },
+            conditionalViewMApper.mapFromEntity(type?.conditionalView),
             type?.controlType,
             type?.enLabel,
             type?.enPlaceholder,
             type?.fieldOrder,
             type?.hasAttachments,
             type?.hasNotes,
-            type?.id.toString(),
+            type?.id,
             type?.regex,
             type?.required,
             type?.responsibleUnit,
@@ -25,24 +26,23 @@ class FieldMapper(private val mapper: ConditionalViewMApper) : Mapper<FieldEntit
             type?.severityLevel,
             type?.templateQuestionId,
             type?.visibilityView,
-            type?.childFields
+            type?.values,
+            type?.workItemId
         )
     }
 
-    override fun mapToEntity(type: Field?): FieldEntity {
-        return FieldEntity(
-            type?.formId,
+    override fun mapToEntity(type: NewField?): NewFieldEntity {
+        return NewFieldEntity(
             type?.arLabel,
-            type?.values,
             type?.arPlaceholder,
-            type?.conditionalView?.let { mapper.mapToEntity(it) },
+            conditionalViewMApper.mapToEntity(type?.conditionalView),
             type?.controlType,
             type?.enLabel,
             type?.enPlaceholder,
             type?.fieldOrder,
             type?.hasAttachments,
             type?.hasNotes,
-            type?.id.toString(),
+            type?.id,
             type?.regex,
             type?.required,
             type?.responsibleUnit,
@@ -50,7 +50,8 @@ class FieldMapper(private val mapper: ConditionalViewMApper) : Mapper<FieldEntit
             type?.severityLevel,
             type?.templateQuestionId,
             type?.visibilityView,
-            type?.childFields
+            type?.values,
+            type?.workItemId
         )
     }
 }

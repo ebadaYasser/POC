@@ -4,7 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import com.check.cache.db.FieldDataBase
-import com.check.domain.models.Field
+import com.check.domain.models.newestresponse.NewField
+import com.check.domain.models.newestresponse.WorkItem
 import com.check.fullcycklepoc.ui.adapter.FormBuilderAdapter
 import com.check.fullcycklepoc.ui.adapter.OnParentChanges
 import com.check.presenter.FormViewModel
@@ -23,20 +24,31 @@ class MainActivity : AppCompatActivity(), OnParentChanges {
 
         formAdapter = FormBuilderAdapter(this)
         initObservers()
-        formViewModel.getForm()
-        formViewModel.getCachedFields("1")
+        formViewModel.getWorkItem()
+
     }
 
     private fun initObservers() {
         formViewModel.apply {
-            observe(this@MainActivity, { handleWeatherData(it) })
-            observeFoundedItemInAdapterList(this@MainActivity, { foundedItemInAdapterList(it) })
+//            observe(this@MainActivity, { handleWeatherData(it) })
+//            observeFoundedItemInAdapterList(this@MainActivity, { foundedItemInAdapterList(it) })
+            observeWorkItem(this@MainActivity, { handleWorkItems(it) })
         }
     }
 
-    private fun handleWeatherData(fields: List<Field>) {
+    private fun handleWeatherData(fields: List<NewField>) {
         formAdapter.setData(fields)
         formRv.adapter = formAdapter
+    }
+
+    private fun handleWorkItems(work: WorkItem) {
+        formAdapter.setData(work.fields!!)
+        formRv.adapter = formAdapter
+        formViewModel.saveWorkItem(work)
+        for (item in work.fields!!){
+            item.workItemId = work.id
+        }
+        formViewModel.saveForm(work.fields!!)
     }
 
     private fun foundedItemInAdapterList(foundedItemInAdapterList: Int) {
@@ -45,9 +57,9 @@ class MainActivity : AppCompatActivity(), OnParentChanges {
         }
     }
 
-    override  fun onParentChanges(parentField: Field) {
+    override fun onParentChanges(parentField: NewField) {
         if (::formAdapter.isInitialized) {
-            formViewModel.saveForm(parentField)
+            formViewModel.saveValue(parentField.values,parentField.workItemId,parentField.id)
             formViewModel.afterNotifiedParentChanged(
                 parentField,
                 formAdapter.getCurrentList(),

@@ -1,8 +1,10 @@
 package com.check.cache.db.convertors
 
 import androidx.room.TypeConverter
-import com.check.data.models.ConditionEntity
-import com.check.data.models.ConditionalViewEntity
+import com.check.cache.db.entities.CampaignCacheEntity
+import com.check.cache.db.entities.ConditionCacheEntity
+import com.check.cache.db.entities.ConditionalViewCacheEntity
+import com.check.cache.db.entities.HeaderCacheEntity
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
@@ -10,26 +12,75 @@ import com.google.gson.reflect.TypeToken
 class Convertors {
     private val gson = Gson()
 
-    @TypeConverter
-    fun fromValues(values: List<Any>?): String {
-        if (values.isNullOrEmpty()) return ""
 
-        val type = object : TypeToken<List<Any>?>() {}.type
-        return gson.toJson(values, type)
+    @TypeConverter
+    fun toCampaignCacheEntity(campaignCacheEntity: String?): CampaignCacheEntity? {
+        if (campaignCacheEntity.isNullOrEmpty()) return null
+        return gson.fromJson(campaignCacheEntity, CampaignCacheEntity::class.java)
     }
 
     @TypeConverter
-    fun toValues(values: String?): List<Any>? {
-        if (values.isNullOrEmpty()) return mutableListOf()
-
-        val type = object : TypeToken<List<Any>?>() {}.type
-        return gson.fromJson(values, type)
+    fun toHeaderCacheEntity(headerCacheEntity: String?): HeaderCacheEntity? {
+        if (headerCacheEntity.isNullOrEmpty()) return null
+        return gson.fromJson(headerCacheEntity, HeaderCacheEntity::class.java)
     }
 
 
+    @TypeConverter
+    fun toConditionCacheEntity(conditionalViewCacheEntity: String?): ConditionCacheEntity? {
+        if (conditionalViewCacheEntity.isNullOrEmpty()) return null
+        return gson.fromJson(conditionalViewCacheEntity, ConditionCacheEntity::class.java)
+    }
 
     @TypeConverter
-    fun fromChild(child: List<String>?): String? {
+    fun toConditionalViewCacheEntity(conditionalViewCacheEntity: String?): ConditionalViewCacheEntity? {
+        if (conditionalViewCacheEntity.isNullOrEmpty()) return null
+        return gson.fromJson(conditionalViewCacheEntity, ConditionalViewCacheEntity::class.java)
+    }
+
+    @TypeConverter
+    fun toConditionCacheEntities(child: String?): List<ConditionCacheEntity?>? {
+        if (child.isNullOrEmpty()) return mutableListOf()
+        val type = object : TypeToken<List<ConditionCacheEntity?>?>() {}.type
+        return gson.fromJson(child, type)
+    }
+
+
+    @TypeConverter
+    fun fromCampaignCacheEntity(campaignCacheEntity: CampaignCacheEntity?): String? {
+        if (campaignCacheEntity == null) return ""
+        return gson.toJson(campaignCacheEntity)
+    }
+
+    @TypeConverter
+    fun fromHeaderCacheEntity(headerCacheEntity: HeaderCacheEntity?): String? {
+        if (headerCacheEntity == null) return ""
+        return gson.toJson(headerCacheEntity)
+    }
+
+    @TypeConverter
+    fun fromConditionalViewCacheEntity(conditionalViewCacheEntity: ConditionalViewCacheEntity?): String? {
+        if (conditionalViewCacheEntity == null) return ""
+        return gson.toJson(conditionalViewCacheEntity)
+    }
+
+
+    @TypeConverter
+    fun fromConditionCacheEntity(conditionalViewCacheEntity: ConditionCacheEntity?): String? {
+        if (conditionalViewCacheEntity == null) return ""
+        return gson.toJson(conditionalViewCacheEntity)
+    }
+
+    @TypeConverter
+    fun fromConditionCacheEntities(conditions: List<ConditionCacheEntity?>?): String? {
+        if (conditions.isNullOrEmpty()) return ""
+        val type = object : TypeToken<List<String>?>() {}.type
+        return gson.toJson(conditions, type)
+    }
+
+
+    @TypeConverter
+    fun fromVisibilityView(child: List<String>?): String? {
         if (child.isNullOrEmpty()) return ""
 
         val type = object : TypeToken<List<String>?>() {}.type
@@ -37,33 +88,10 @@ class Convertors {
     }
 
     @TypeConverter
-    fun toChild(child: String?): List<String>? {
+    fun toVisibilityView(child: String?): List<String>? {
         if (child.isNullOrEmpty()) return mutableListOf()
 
         val type = object : TypeToken<List<String>?>() {}.type
         return gson.fromJson(child, type)
-    }
-    @TypeConverter
-    fun fromConditions(  conditions: List<ConditionEntity?>?): String? {
-        if (conditions.isNullOrEmpty()) return ""
-        val type = object : TypeToken<List<String>?>() {}.type
-        return gson.toJson(conditions, type)
-    }
-
-    @TypeConverter
-    fun tConditions(child: String?): List<ConditionEntity?>? {
-        if (child.isNullOrEmpty()) return mutableListOf()
-        val type = object : TypeToken<List<ConditionEntity?>?>() {}.type
-        return gson.fromJson(child, type)
-    } @TypeConverter
-    fun fromConditionView( value: ConditionalViewEntity?): String? {
-        if (value==null) return ""
-        return gson.toJson(value)
-    }
-
-    @TypeConverter
-    fun toConditionView(child: String?): ConditionalViewEntity? {
-        if (child.isNullOrEmpty()) return null
-        return gson.fromJson(child,ConditionalViewEntity::class.java)
     }
 }

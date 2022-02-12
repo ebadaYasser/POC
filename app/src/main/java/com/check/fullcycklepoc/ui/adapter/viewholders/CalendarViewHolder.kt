@@ -5,7 +5,7 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.check.core.base.DependencyActions
-import com.check.domain.models.Field
+import com.check.domain.models.newestresponse.NewField
 import com.check.fullcycklepoc.R
 import com.check.fullcycklepoc.ui.adapter.OnParentChanges
 import com.check.fullcycklepoc.ui.base.RecyclerAdapter
@@ -18,12 +18,12 @@ import kotlinx.coroutines.launch
 class CalendarViewHolder(
     private val onParentChanges: OnParentChanges,
     private val view: View
-) : RecyclerAdapter.BaseViewHolder<Field>(view) {
+) : RecyclerAdapter.BaseViewHolder<NewField>(view) {
 
     private val title = itemView.findViewById<TextView>(R.id.label_tv_date)
     private val textArea = itemView.findViewById<EditText>(R.id.text_box_et_date_date)
     private val container = itemView.findViewById<ConstraintLayout>(R.id.date_container)
-    override fun bind(item: Field, isLast: Boolean) {
+    override fun bind(item: NewField, isLast: Boolean) {
         val isFieldHasDependencies = item.conditionalView?.conditions?.isEmpty() ?: false
         val action = item.conditionalView?.action
         if (action == DependencyActions.HIDDEN)

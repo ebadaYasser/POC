@@ -6,26 +6,21 @@ import android.view.View
 import android.widget.EditText
 import android.widget.TextView
 import com.check.core.base.DependencyActions.HIDDEN
-import com.check.domain.models.Field
+import com.check.domain.models.newestresponse.NewField
 import com.check.fullcycklepoc.R
 import com.check.fullcycklepoc.ui.adapter.OnParentChanges
 import com.check.fullcycklepoc.ui.base.RecyclerAdapter
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlin.coroutines.coroutineContext
 
 
 class TextFieldViewHolder(
     private val onParentChanges: OnParentChanges,
     view: View
-) : RecyclerAdapter.BaseViewHolder<Field>(view) {
+) : RecyclerAdapter.BaseViewHolder<NewField>(view) {
 
     private val label = itemView.findViewById<TextView>(R.id.label_tv)
     private val textArea = itemView.findViewById<EditText>(R.id.text_box_et)
 
-    override fun bind(item: Field, isLast: Boolean) {
+    override fun bind(item: NewField, isLast: Boolean) {
         label.text = item.enLabel
         if (item.values == null)
             item.values = mutableListOf()

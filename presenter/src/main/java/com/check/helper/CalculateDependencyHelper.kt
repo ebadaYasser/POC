@@ -9,9 +9,9 @@ import com.check.core.base.DependencyRules.MAX_LENGTH
 import com.check.core.base.DependencyRules.MIN_LENGTH
 import com.check.core.base.DependencyRules.REQUIRED
 import com.check.core.base.DependencyRules.VALUE
-import com.check.domain.models.Field
+import com.check.domain.models.newestresponse.NewField
 
-class CalculateDependencyHelper(private val childItem: Field, parentItem: Field) {
+class CalculateDependencyHelper(private val childItem: NewField, parentItem: NewField) {
     private val parentValues = parentItem.values ?: mutableListOf()
     private val parentId = parentItem.id
 

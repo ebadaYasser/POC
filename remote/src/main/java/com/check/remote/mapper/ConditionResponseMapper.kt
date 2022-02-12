@@ -1,11 +1,11 @@
 package com.check.remote.mapper
 
-import com.check.data.models.ConditionEntity
-import com.check.remote.model.FormResponse
+import com.check.data.models.newestrespone.ConditionEntity
+import com.check.remote.model.newestresponse.Condition
 
 class ConditionResponseMapper :
-    ResponseMapper<FormResponse.Data.Field.ConditionalView.Condition, ConditionEntity> {
-    override fun mapFromModel(model: FormResponse.Data.Field.ConditionalView.Condition?): ConditionEntity {
+    ResponseMapper<Condition, ConditionEntity> {
+    override fun mapFromModel(model: Condition?): ConditionEntity {
         return ConditionEntity(
             model?.arErrorMsg,
             model?.conditionType,

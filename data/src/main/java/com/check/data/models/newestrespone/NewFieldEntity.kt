@@ -1,24 +1,23 @@
-package com.check.domain.models
+package com.check.data.models.newestrespone
 
-data class Field(
-    var formId: String?,
+data class NewFieldEntity(
     var arLabel: String?,
-    var values: MutableList<String>? = null,
     var arPlaceholder: String?,
-    var conditionalView: ConditionalView? = null,
+    var conditionalView: ConditionalViewEntity?,
     var controlType: String?,
     var enLabel: String?,
     var enPlaceholder: String?,
     var fieldOrder: Int?,
     var hasAttachments: Boolean?,
     var hasNotes: Boolean?,
-    var id: String,
+    var id: String?,
     var regex: String?,
     var required: Boolean?,
     var responsibleUnit: String?,
     var sectionId: String?,
     var severityLevel: String?,
     var templateQuestionId: String?,
-    var visibilityView: List<String?>?,
-    var childFields: MutableList<String>? = null
+    var visibilityView: List<String>?,
+    var values: MutableList<String>?,
+    var workItemId: String?
 )

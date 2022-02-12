@@ -1,24 +1,20 @@
 package com.check.cache.db.entities
 
-import androidx.annotation.NonNull
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.check.data.models.ConditionalViewEntity
 
-@Entity(tableName = "Field")
+@Entity(tableName = "form")
 data class FieldCacheEntity(
-    var formId: String?,
     var arLabel: String?,
-    var values: MutableList<String>? = null,
     var arPlaceholder: String?,
-    var conditionalView: ConditionalViewEntity? = null,
+    var conditionalView: ConditionalViewCacheEntity?,
     var controlType: String?,
     var enLabel: String?,
     var enPlaceholder: String?,
     var fieldOrder: Int?,
     var hasAttachments: Boolean?,
     var hasNotes: Boolean?,
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = false)
     var id: String,
     var regex: String?,
     var required: Boolean?,
@@ -26,6 +22,7 @@ data class FieldCacheEntity(
     var sectionId: String?,
     var severityLevel: String?,
     var templateQuestionId: String?,
-    var visibilityView: List<String?>?,
-    var childFields: MutableList<String>? = null
+    var visibilityView: List<String>?,
+    var values: MutableList<String>?,
+    var workItemId: String?
 )

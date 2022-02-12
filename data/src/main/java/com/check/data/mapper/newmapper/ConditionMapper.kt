@@ -1,9 +1,11 @@
-package com.check.data.mapper
+package com.check.data.mapper.newmapper
 
-import com.check.data.models.ConditionEntity
-import com.check.domain.models.Condition
+import com.check.data.mapper.Mapper
+import com.check.data.models.newestrespone.ConditionEntity
+import com.check.domain.models.newestresponse.Condition
 
-class ConditionMapper: Mapper<ConditionEntity, Condition> {
+
+class ConditionMapper : Mapper<ConditionEntity, Condition> {
     override fun mapFromEntity(type: ConditionEntity?): Condition {
         return Condition(
             type?.arErrorMsg,
@@ -23,6 +25,8 @@ class ConditionMapper: Mapper<ConditionEntity, Condition> {
             type?.linkedFieldId,
             type?.validatorValue,
             type?.isConditionPassed
+
         )
     }
+
 }

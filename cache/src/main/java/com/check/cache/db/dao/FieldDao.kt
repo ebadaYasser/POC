@@ -1,17 +1,20 @@
 package com.check.cache.db.dao
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.check.cache.db.entities.FieldCacheEntity
+import com.check.cache.db.entities.Value
+import com.check.cache.db.entities.WorkItemCacheEntity
+import com.check.cache.db.relation.WorkItemAndForm
 
 @Dao
 interface FieldDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertFields(fields: FieldCacheEntity)
+    fun saveWorkItem(workItemCacheEntity: WorkItemCacheEntity)
 
-    @Query("SELECT * FROM Field WHERE formId= :fieldId")
-    fun getAllFields(fieldId: String): List<FieldCacheEntity?>?
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun saveForm(fieldCacheEntity: List<FieldCacheEntity>)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun saveValue(value: Value)
 }

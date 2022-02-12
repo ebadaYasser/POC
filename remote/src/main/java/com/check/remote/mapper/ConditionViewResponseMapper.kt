@@ -1,15 +1,15 @@
 package com.check.remote.mapper
 
-import com.check.data.models.ConditionalViewEntity
-import com.check.remote.model.FormResponse
+import com.check.data.models.newestrespone.ConditionalViewEntity
+import com.check.remote.model.newestresponse.ConditionalView
 
-class ConditionViewResponseMapper(private val conditionMapper: ConditionResponseMapper): ResponseMapper<FormResponse.Data.Field.ConditionalView,ConditionalViewEntity> {
-    override fun mapFromModel(model: FormResponse.Data.Field.ConditionalView?): ConditionalViewEntity {
+
+class ConditionViewResponseMapper(private val conditionMapper: ConditionResponseMapper): ResponseMapper<ConditionalView, ConditionalViewEntity> {
+    override fun mapFromModel(model: ConditionalView?): ConditionalViewEntity {
         return ConditionalViewEntity(
             model?.action,
             model?.conditions?.map { conditionMapper.mapFromModel(it) },
-            model?.operator,
-            model?.conditionsSize
+            model?.operator
         )
     }
 }

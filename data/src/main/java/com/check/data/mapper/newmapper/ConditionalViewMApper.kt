@@ -1,7 +1,9 @@
-package com.check.data.mapper
+package com.check.data.mapper.newmapper
 
-import com.check.data.models.ConditionalViewEntity
-import com.check.domain.models.ConditionalView
+import com.check.data.mapper.Mapper
+import com.check.data.models.newestrespone.ConditionalViewEntity
+import com.check.domain.models.newestresponse.ConditionalView
+
 
 class ConditionalViewMApper(private val mapper: ConditionMapper) :
     Mapper<ConditionalViewEntity, ConditionalView> {
@@ -9,8 +11,7 @@ class ConditionalViewMApper(private val mapper: ConditionMapper) :
         return ConditionalView(
             type?.action,
             type?.conditions?.map { mapper.mapFromEntity(it) },
-            type?.operator,
-            type?.conditionsSize
+            type?.operator
         )
     }
 
@@ -18,8 +19,9 @@ class ConditionalViewMApper(private val mapper: ConditionMapper) :
         return ConditionalViewEntity(
             type?.action,
             type?.conditions?.map { mapper.mapToEntity(it) },
-            type?.operator,
-            type?.conditionsSize
+            type?.operator
         )
     }
+
+
 }

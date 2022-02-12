@@ -4,5 +4,4 @@ data class ConditionalViewCacheEntity(
     var action: String?,
     var conditions: List<ConditionCacheEntity?>? = null,
     var `operator`: String?,
-    var conditionsSize: Int? = 0
 )

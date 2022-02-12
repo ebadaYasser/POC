@@ -8,8 +8,13 @@ import androidx.room.TypeConverters
 import com.check.cache.db.convertors.Convertors
 import com.check.cache.db.dao.FieldDao
 import com.check.cache.db.entities.FieldCacheEntity
+import com.check.cache.db.entities.Value
+import com.check.cache.db.entities.WorkItemCacheEntity
 
-@Database(entities = [FieldCacheEntity::class], version = 1)
+@Database(
+    entities = [WorkItemCacheEntity::class, FieldCacheEntity::class, Value::class],
+    version = 1
+)
 @TypeConverters(Convertors::class)
 abstract class FieldDataBase : RoomDatabase() {
 

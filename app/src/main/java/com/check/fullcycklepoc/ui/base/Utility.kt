@@ -5,15 +5,15 @@ import android.app.DatePickerDialog
 import android.content.Context
 import android.widget.DatePicker
 import android.widget.EditText
-import com.check.domain.models.Field
+import com.check.domain.models.newestresponse.NewField
 import java.util.*
 
 
 @SuppressLint("SetTextI18n") fun Context.openCalendarAndSetTextInResult(
-  parentField: Field,
+  parentField: NewField,
 
   textBox: EditText,
-  action: (Field) -> Unit
+  action: (NewField) -> Unit
 ) {
   val c = Calendar.getInstance()
   val currentYear = c.get(Calendar.YEAR)

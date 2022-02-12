@@ -1,30 +1,23 @@
 package com.check.cache.db.base.mapper
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
-import com.check.cache.db.entities.ConditionCacheEntity
 import com.check.cache.db.entities.FieldCacheEntity
-import com.check.data.models.ConditionEntity
-import com.check.data.models.FieldEntity
+import com.check.data.models.newestrespone.NewFieldEntity
 
 
 class FieldCacheEntityMapper(private val mapper: ConditionalViewCacheEntityMapper) :
-    CacheDataMapper<FieldCacheEntity, FieldEntity> {
-    override fun mapToCache(data: FieldEntity): FieldCacheEntity {
-
+    CacheDataMapper<FieldCacheEntity, NewFieldEntity> {
+    override fun mapToCache(data: NewFieldEntity): FieldCacheEntity {
         return FieldCacheEntity(
-            data.formId,
             data.arLabel,
-            data.values,
             data.arPlaceholder,
-            data.conditionalView,
+            mapper.mapToCache(data.conditionalView!!),
             data.controlType,
             data.enLabel,
             data.enPlaceholder,
             data.fieldOrder,
             data.hasAttachments,
             data.hasNotes,
-            data.id,
+            data.id!!,
             data.regex,
             data.required,
             data.responsibleUnit,
@@ -32,17 +25,16 @@ class FieldCacheEntityMapper(private val mapper: ConditionalViewCacheEntityMappe
             data.severityLevel,
             data.templateQuestionId,
             data.visibilityView,
-            data.childFields
+            data.values,
+            data.workItemId
         )
     }
 
-    override fun mapFromCache(cache: FieldCacheEntity): FieldEntity {
-        return FieldEntity(
-            cache.formId,
+    override fun mapFromCache(cache: FieldCacheEntity): NewFieldEntity {
+        return NewFieldEntity(
             cache.arLabel,
-            cache.values,
             cache.arPlaceholder,
-            cache.conditionalView,
+            mapper.mapFromCache(cache.conditionalView!!),
             cache.controlType,
             cache.enLabel,
             cache.enPlaceholder,
@@ -57,7 +49,9 @@ class FieldCacheEntityMapper(private val mapper: ConditionalViewCacheEntityMappe
             cache.severityLevel,
             cache.templateQuestionId,
             cache.visibilityView,
-            cache.childFields
+            cache.values,
+            cache.workItemId
         )
     }
+
 }

@@ -6,7 +6,7 @@ import com.check.core.base.FieldTypes.CALENDAR
 import com.check.core.base.FieldTypes.TEXT_FIELD
 import com.check.core.base.FieldsAdapterViewTypes.CALENDAR_TYPE
 import com.check.core.base.FieldsAdapterViewTypes.TEXT_BOX_TYPE
-import com.check.domain.models.Field
+import com.check.domain.models.newestresponse.NewField
 import com.check.fullcycklepoc.R
 import com.check.fullcycklepoc.ui.adapter.viewholders.CalendarViewHolder
 import com.check.fullcycklepoc.ui.adapter.viewholders.TextFieldViewHolder
@@ -14,7 +14,7 @@ import com.check.fullcycklepoc.ui.base.RecyclerAdapter
 
 
 class FormBuilderAdapter(private val onParentChanges: OnParentChanges) :
-    RecyclerAdapter<Field, RecyclerAdapter.BaseViewHolder<Field>>() {
+    RecyclerAdapter<NewField, RecyclerAdapter.BaseViewHolder<NewField>>() {
 
     override fun getLayoutId(viewType: Int): Int = when (viewType) {
         TEXT_BOX_TYPE -> R.layout.item_edit_text
@@ -22,13 +22,13 @@ class FormBuilderAdapter(private val onParentChanges: OnParentChanges) :
         else -> R.layout.item_calendar
     }
 
-    override fun setData(newItems: List<Field>) {
+    override fun setData(newItems: List<NewField>) {
 //        items.addAll(newItems)
         differAsync.submitList(newItems)
 
     }
 
-    override fun instantiateViewHolder(itemView: View, viewType: Int): BaseViewHolder<Field> {
+    override fun instantiateViewHolder(itemView: View, viewType: Int): BaseViewHolder<NewField> {
         return when (viewType) {
             TEXT_BOX_TYPE -> TextFieldViewHolder(onParentChanges, itemView)
             CALENDAR_TYPE -> CalendarViewHolder(onParentChanges, itemView)
@@ -36,13 +36,13 @@ class FormBuilderAdapter(private val onParentChanges: OnParentChanges) :
         }
     }
 
-    override fun generateAsyncDifferCallback(): DiffUtil.ItemCallback<Field> {
-        return object : DiffUtil.ItemCallback<Field>() {
-            override fun areItemsTheSame(oldItem: Field, newItem: Field): Boolean {
+    override fun generateAsyncDifferCallback(): DiffUtil.ItemCallback<NewField> {
+        return object : DiffUtil.ItemCallback<NewField>() {
+            override fun areItemsTheSame(oldItem: NewField, newItem: NewField): Boolean {
                 return oldItem.id == newItem.id
             }
 
-            override fun areContentsTheSame(oldItem: Field, newItem: Field): Boolean {
+            override fun areContentsTheSame(oldItem: NewField, newItem: NewField): Boolean {
                 return oldItem == newItem
             }
 
@@ -57,7 +57,7 @@ class FormBuilderAdapter(private val onParentChanges: OnParentChanges) :
         }
     }
 
-    override fun onBindViewHolder(holder: BaseViewHolder<Field>, position: Int) {
+    override fun onBindViewHolder(holder: BaseViewHolder<NewField>, position: Int) {
         when (holder) {
             is TextFieldViewHolder -> holder.bind(
                 differAsync.currentList[position],
@@ -70,7 +70,7 @@ class FormBuilderAdapter(private val onParentChanges: OnParentChanges) :
         }
     }
 
-    fun getCurrentList(): List<Field> {
+    fun getCurrentList(): List<NewField> {
         return differAsync.currentList
     }
 }
