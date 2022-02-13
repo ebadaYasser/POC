@@ -15,4 +15,6 @@ interface FormRepository {
         formId: String?,
         fieldId: String?
     ): Completable
+
+    fun getWorkItem(formId :String): Single<WorkItem>
 }

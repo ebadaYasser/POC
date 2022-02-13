@@ -1,5 +1,6 @@
 package com.check.presenter
 
+import android.util.Log
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
@@ -66,6 +67,18 @@ class FormViewModel(private val formUseCase: FormUseCase) : BaseViewModel() {
                     workItem.value = it
                 }, {
 
+                })
+        )
+    }
+
+    fun getSavedWorkItem(formId: String) {
+        compositeDisposable.add(
+            formUseCase.getWorkitem(formId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    Log.d("flknfl", "getSavedWorkItem: $it")
+                }, {
                 })
         )
     }

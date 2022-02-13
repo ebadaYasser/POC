@@ -3,6 +3,7 @@ package com.check.data.repository
 import com.check.data.cache.FormCache
 import com.check.data.mapper.newmapper.NewFieldMapper
 import com.check.data.mapper.newmapper.WorkItemMapper
+import com.check.data.models.newestrespone.WorkItemEntity
 import com.check.data.remote.FormRemote
 import com.check.domain.models.newestresponse.NewField
 import com.check.domain.models.newestresponse.WorkItem
@@ -36,6 +37,10 @@ class FormRepositoryImp(
         fieldId: String?
     ): Completable {
         return formCache.saveValue(values, formId, fieldId)
+    }
+
+    override fun getWorkItem(formId: String): Single<WorkItem> {
+        return formCache.getWorkITem(formId).map { workItemMapper.mapFromEntity(it) }
     }
 
 }

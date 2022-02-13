@@ -13,5 +13,5 @@ data class WorkItemAndForm(
         parentColumn = "id",
         entityColumn = "workItemId"
     )
-    val fieldCacheEntity: FieldCacheEntity
+    val fieldCacheEntity: List<FieldCacheEntity>
 )

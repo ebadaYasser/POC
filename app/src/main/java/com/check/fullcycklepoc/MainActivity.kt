@@ -25,6 +25,10 @@ class MainActivity : AppCompatActivity(), OnParentChanges {
         formAdapter = FormBuilderAdapter(this)
         initObservers()
         formViewModel.getWorkItem()
+        getData.setOnClickListener {
+            formViewModel.getSavedWorkItem("form1")
+        }
+
 
     }
 
@@ -67,4 +71,6 @@ class MainActivity : AppCompatActivity(), OnParentChanges {
             )
         }
     }
+
+//    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
 }

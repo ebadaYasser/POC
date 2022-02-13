@@ -2,6 +2,7 @@ package com.check.remote
 
 //import com.check.core.base.TestResponse.NEW_RESPONSE
 import com.check.core.base.TestResponse.RESPONSE_FORM_WITH_NO_SECTION
+import com.check.data.models.newestrespone.NewFieldEntity
 import com.check.data.models.newestrespone.WorkItemEntity
 import com.check.data.remote.FormRemote
 import com.check.remote.mapper.newmapper.WorkItemMapper
@@ -9,6 +10,7 @@ import com.check.remote.model.newestresponse.NewResponse
 import com.check.remote.model.newestresponse.WorkItem
 import com.google.gson.Gson
 import io.reactivex.Single
+import java.util.*
 
 class HomeRemoteImp(
     private val workItemMapper: WorkItemMapper
@@ -24,7 +26,33 @@ class HomeRemoteImp(
 
     override fun getWorkItem(): Single<WorkItemEntity> {
         return Single.defer {
-            Single.just(workItemMapper.mapFromModel(getNewResponse()))
+            val obj = workItemMapper.mapFromModel(getNewResponse())
+            val test = obj.fields[6]
+            for (item in 0..10000){
+                val wsw = NewFieldEntity(
+                    test.arLabel,
+                    test.arPlaceholder,
+                    test.conditionalView,
+                    test.controlType,
+                    test.enLabel,
+                    test.enPlaceholder,
+                    test.fieldOrder,
+                    test.hasAttachments,
+                    test.hasNotes,
+                    item.toString(),
+                    test.regex,
+                    test.required,
+                    test.responsibleUnit,
+                    test.sectionId,
+                    test.severityLevel,
+                    test.templateQuestionId,
+                    test.visibilityView,
+                    test.values,
+                    test.workItemId
+                )
+                obj.fields.add(wsw)
+            }
+            Single.just(obj)
         }
     }
 

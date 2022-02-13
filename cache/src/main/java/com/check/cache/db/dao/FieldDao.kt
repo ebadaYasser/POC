@@ -12,9 +12,12 @@ interface FieldDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun saveWorkItem(workItemCacheEntity: WorkItemCacheEntity)
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun saveForm(fieldCacheEntity: List<FieldCacheEntity>)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun saveValue(value: Value)
+
+    @Query("SELECT *FROM work_item WHERE id = :formId")
+    fun getWorkItemAndForm(formId: String): List<WorkItemAndForm>
 }

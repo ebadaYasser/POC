@@ -56,7 +56,7 @@ val appModule = module {
     single { ConditionCacheEntityMapper() }
     single { ConditionalViewCacheEntityMapper(get()) }
     single { FieldCacheEntityMapper(get()) }
-    single<FormCache> { CacheImp(get(), get(), get()) }
+    single<FormCache> { CacheImp(get(), get(), get(),get()) }
     single { com.check.remote.mapper.newmapper.ConditionMapper() }
     single { ConditionalViewMapper(get()) }
     single { NewFieldMapper(get()) }

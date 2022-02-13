@@ -6,7 +6,7 @@ data class WorkItem(
     @SerializedName("campaign")
     var campaign: Campaign?,
     @SerializedName("Fields")
-    var fields: List<Field>?,
+    var fields: MutableList<Field>?,
     @SerializedName("id")
     var id: String?,
     @SerializedName("score")

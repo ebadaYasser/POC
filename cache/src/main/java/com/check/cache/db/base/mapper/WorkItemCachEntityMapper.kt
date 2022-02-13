@@ -20,7 +20,7 @@ class WorkItemCachEntityMapper(
     override fun mapFromCache(cache: WorkItemCacheEntity): WorkItemEntity {
         return WorkItemEntity(
             campaignCacheEntityMapper.mapFromCache(cache.campaign!!),
-            listOf(),
+            mutableListOf(),
             cache.id,
             cache.score,
             cache.templateId,

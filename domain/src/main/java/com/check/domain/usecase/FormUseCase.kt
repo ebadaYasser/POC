@@ -13,4 +13,6 @@ class FormUseCase(private val formRepository: FormRepository) {
         formId: String?,
         fieldId: String?
     ) = formRepository.saveValue(values, formId, fieldId)
+
+    fun getWorkitem(formId: String) = formRepository.getWorkItem(formId)
 }
