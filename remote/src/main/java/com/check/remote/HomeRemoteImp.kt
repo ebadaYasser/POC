@@ -24,36 +24,35 @@ class HomeRemoteImp(
 //        return result.map { mapper.mapFromModel(it) }
 //    }
 
-    override fun getWorkItem(): Single<WorkItemEntity> {
-        return Single.defer {
-            val obj = workItemMapper.mapFromModel(getNewResponse())
-            val test = obj.fields[6]
-            for (item in 0..10000){
-                val wsw = NewFieldEntity(
-                    test.arLabel,
-                    test.arPlaceholder,
-                    test.conditionalView,
-                    test.controlType,
-                    test.enLabel,
-                    test.enPlaceholder,
-                    test.fieldOrder,
-                    test.hasAttachments,
-                    test.hasNotes,
-                    item.toString(),
-                    test.regex,
-                    test.required,
-                    test.responsibleUnit,
-                    test.sectionId,
-                    test.severityLevel,
-                    test.templateQuestionId,
-                    test.visibilityView,
-                    test.values,
-                    test.workItemId
-                )
-                obj.fields.add(wsw)
-            }
-            Single.just(obj)
+    override fun getWorkItem(): WorkItemEntity {
+        val obj = workItemMapper.mapFromModel(getNewResponse())
+        val test = obj.fields[6]
+        for (item in 0..10000) {
+            val wsw = NewFieldEntity(
+                test.arLabel,
+                test.arPlaceholder,
+                test.conditionalView,
+                test.controlType,
+                test.enLabel,
+                test.enPlaceholder,
+                test.fieldOrder,
+                test.hasAttachments,
+                test.hasNotes,
+                item.toString(),
+                test.regex,
+                test.required,
+                test.responsibleUnit,
+                test.sectionId,
+                test.severityLevel,
+                test.templateQuestionId,
+                test.visibilityView,
+                test.values,
+                test.workItemId
+            )
+            obj.fields.add(wsw)
         }
+        return obj
+
     }
 
 

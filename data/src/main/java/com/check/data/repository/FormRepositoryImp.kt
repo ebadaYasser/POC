@@ -9,7 +9,10 @@ import com.check.domain.models.newestresponse.NewField
 import com.check.domain.models.newestresponse.WorkItem
 import com.check.domain.repository.FormRepository
 import io.reactivex.Completable
+import io.reactivex.Scheduler
 import io.reactivex.Single
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
 
 class FormRepositoryImp(
     private val formRemote: FormRemote,
@@ -19,8 +22,25 @@ class FormRepositoryImp(
 ) :
     FormRepository {
 
-    override fun getWorkItems(): Single<WorkItem> {
-        return formRemote.getWorkItem().map { workItemMapper.mapFromEntity(it) }
+    override fun getWorkItems(): WorkItem {
+        val compositeDisposable = CompositeDisposable()
+        val compositeDisposable2 = CompositeDisposable()
+
+        val workItem = formRemote.getWorkItem()
+        for (item in workItem.fields) {
+            item.workItemId = workItem.id
+        }
+        compositeDisposable.add(
+            formCache.saveWorkITem(workItem)
+                .subscribeOn(Schedulers.io())
+                .subscribe({}, {})
+        )
+        compositeDisposable2.add(
+            formCache.saveForm(workItem.fields)
+                .subscribeOn(Schedulers.io())
+                .subscribe({}, {})
+        )
+        return workItemMapper.mapFromEntity(formRemote.getWorkItem())
     }
 
     override fun saveWorkItem(workItem: WorkItem): Completable {

@@ -5,5 +5,5 @@ import io.reactivex.Single
 
 interface FormRemote {
 //    fun getForm(): List<FieldEntity>
-    fun getWorkItem(): Single<WorkItemEntity>
+    fun getWorkItem(): WorkItemEntity
 }

@@ -7,7 +7,7 @@ import io.reactivex.Single
 
 
 interface FormRepository {
-    fun getWorkItems(): Single<WorkItem>
+    fun getWorkItems(): WorkItem
     fun saveWorkItem(workItem: WorkItem): Completable
     fun saveForm(form: List<NewField>): Completable
     fun saveValue(

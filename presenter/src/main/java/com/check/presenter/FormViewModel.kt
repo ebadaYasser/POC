@@ -11,13 +11,8 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 class FormViewModel(private val formUseCase: FormUseCase) : BaseViewModel() {
-    private val fieldData = MutableLiveData<List<NewField>>()
     private val workItem = MutableLiveData<WorkItem>()
     private val foundedItemInAdapterList = MutableLiveData<Int>()
-
-    fun getForm() {
-//        fieldData.postValue(checkFieldsForFirstTime(formUseCase.getForm()))
-    }
 
 
     fun saveValue(
@@ -34,13 +29,6 @@ class FormViewModel(private val formUseCase: FormUseCase) : BaseViewModel() {
         )
     }
 
-
-    fun observe(
-        lifecycleOwner: LifecycleOwner,
-        observer: Observer<List<NewField>>
-    ) {
-        fieldData.observe(lifecycleOwner, observer)
-    }
 
     fun observeFoundedItemInAdapterList(
         lifecycleOwner: LifecycleOwner,
@@ -83,25 +71,6 @@ class FormViewModel(private val formUseCase: FormUseCase) : BaseViewModel() {
         )
     }
 
-    fun saveWorkItem(workItem: WorkItem) {
-        compositeDisposable.add(
-            formUseCase.saveWorkItem(workItem)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({}, {})
-
-        )
-    }
-
-    fun saveForm(form: List<NewField>) {
-        compositeDisposable.add(
-            formUseCase.saveForm(form)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({}, {})
-
-        )
-    }
 
 
     fun afterNotifiedParentChanged(parent: NewField, items: List<NewField>, isComputing: Boolean) {
@@ -114,18 +83,5 @@ class FormViewModel(private val formUseCase: FormUseCase) : BaseViewModel() {
 //                foundedItemInAdapterList.value = index
 //        }
     }
-
-//    private fun checkFieldsForFirstTime(items: List<NewField>): List<NewField> {
-//        for (parent in items) {
-//            for (childFieldId in parent.childFields ?: mutableListOf()) {
-//                val foundItemInAdapter = items.find { it.id == childFieldId }
-//                val updateDependencyHelper = CalculateDependencyHelper(foundItemInAdapter!!, parent)
-//                updateDependencyHelper.isThereAnyDependencyValidated()
-//
-//            }
-//
-//        }
-//        return items
-//    }
 
 }
